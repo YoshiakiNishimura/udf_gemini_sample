@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+message gemini_string {
+  string str_value = 1;
+}
+service gemini_service {
+  rpc ask_gemini(gemini_string) returns (gemini_string);
+}
