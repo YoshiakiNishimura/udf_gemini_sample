@@ -1,0 +1,31 @@
+@startuml
+scale 1280*670
+
+skinparam backgroundColor #F8FAFC
+skinparam shadowing false
+skinparam roundcorner 22
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 18
+skinparam ArrowColor #94A3B8
+skinparam ArrowThickness 3
+skinparam titleFontSize 28
+skinparam titleFontStyle bold
+skinparam titleFontColor #1E293B
+skinparam rectangleBorderColor #CBD5E1
+skinparam rectangleFontColor #1E293B
+skinparam rectangleBackgroundColor #FFFFFF
+
+title SQL to AI with Tsurugi UDF
+
+left to right direction
+
+rectangle "SQL\n\nQuery" as A #DBEAFE
+rectangle "Tsurugi\nUDF\n\nDatabase side" as B #CFFAFE
+rectangle "gRPC\n\nRPC call" as C #EDE9FE
+rectangle "Gemini\nAPI\n\nExternal service" as D #DCFCE7
+
+A -right-> B : function call
+B -right-> C : RPC
+C -right-> D : external API call
+
+@enduml

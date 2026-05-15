@@ -1,0 +1,44 @@
+@startuml
+scale 1280*720
+
+skinparam backgroundColor #F8FAFC
+skinparam shadowing false
+skinparam roundcorner 22
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 18
+skinparam ArrowColor #94A3B8
+skinparam ArrowThickness 3
+skinparam titleFontSize 28
+skinparam titleFontStyle bold
+skinparam titleFontColor #1E293B
+skinparam rectangleBorderColor #CBD5E1
+skinparam rectangleFontColor #1E293B
+skinparam rectangleBackgroundColor #FFFFFF
+
+title BLOB Processing Ideas
+
+rectangle "Image BLOB path" as IMAGE_LABEL #EFF6FF
+rectangle "PNG\nBLOB" as PNG #DBEAFE
+rectangle "Tsurugi\nUDF" as UDF1 #CFFAFE
+rectangle "Python\nPillow" as PILLOW #EDE9FE
+rectangle "WebP\nBLOB" as WEBP #DCFCE7
+
+rectangle "Video BLOB path" as VIDEO_LABEL #FFF7ED
+rectangle "H.264\nBLOB" as H264 #FFEDD5
+rectangle "Tsurugi\nUDF" as UDF2 #CFFAFE
+rectangle "Python\nffmpeg" as FFMPEG #EDE9FE
+rectangle "AV1\nBLOB" as AV1 #DCFCE7
+
+IMAGE_LABEL -down[hidden]-> PNG
+PNG -right-> UDF1
+UDF1 -right-> PILLOW
+PILLOW -right-> WEBP
+
+VIDEO_LABEL -down[hidden]-> H264
+H264 -right-> UDF2
+UDF2 -right-> FFMPEG
+FFMPEG -right-> AV1
+
+PNG -down[hidden]-> H264
+
+@enduml

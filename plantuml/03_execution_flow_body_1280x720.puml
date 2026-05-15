@@ -1,0 +1,31 @@
+@startuml
+scale 1280*720
+
+skinparam backgroundColor #F8FAFC
+skinparam shadowing false
+skinparam roundcorner 22
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 18
+skinparam ArrowColor #94A3B8
+skinparam ArrowThickness 3
+skinparam titleFontSize 28
+skinparam titleFontStyle bold
+skinparam titleFontColor #1E293B
+skinparam rectangleBorderColor #CBD5E1
+skinparam rectangleFontColor #1E293B
+skinparam rectangleBackgroundColor #FFFFFF
+
+title Execution Flow
+
+left to right direction
+
+rectangle "1\nRun SQL\n\nSELECT ask_gemini(value)\nFROM t;" as S1 #DBEAFE
+rectangle "2\nInvoke UDF\n\nTsurugi maps the SQL\nfunction to gRPC." as S2 #CFFAFE
+rectangle "3\nCall API\n\nPython server sends\nthe prompt to Gemini." as S3 #EDE9FE
+rectangle "4\nReturn Result\n\nThe response is returned\nas a SQL result." as S4 #DCFCE7
+
+S1 -right-> S2
+S2 -right-> S3
+S3 -right-> S4
+
+@enduml

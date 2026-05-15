@@ -1,0 +1,39 @@
+cat > plantuml/02_architecture_body_1280x720.puml <<'EOF'
+@startuml
+scale 1280*720
+
+skinparam backgroundColor #F8FAFC
+skinparam shadowing false
+skinparam roundcorner 22
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 18
+skinparam ArrowColor #94A3B8
+skinparam ArrowThickness 3
+skinparam titleFontSize 28
+skinparam titleFontStyle bold
+skinparam titleFontColor #1E293B
+skinparam rectangleBorderColor #CBD5E1
+skinparam rectangleFontColor #1E293B
+skinparam rectangleBackgroundColor #FFFFFF
+
+title Architecture Overview
+
+left to right direction
+
+rectangle "Tsurugi\n\nSQL query\nSELECT ask_gemini(value)\nFROM t;" as A #DBEAFE
+rectangle "Tsurugi UDF\n\nSQL function mapping" as B #CFFAFE
+rectangle "Python gRPC Server\n\nserver.py\nimplements RPC" as C #EDE9FE
+rectangle "ask_gemini(prompt)\n\ncalls external API" as D #F3E8FF
+rectangle "Gemini API\n\nExternal service" as E #DCFCE7
+
+A -right-> B : SQL call
+B -right-> C : gRPC
+C -right-> D : dispatch
+D -right-> E : HTTPS/API
+
+E -down-> D : response
+D -left-> C : return
+C -left-> B : gRPC result
+
+@enduml
+EOF
