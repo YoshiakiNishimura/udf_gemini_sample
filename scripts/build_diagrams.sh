@@ -65,7 +65,8 @@ build_one "${PUML_DIR}/01_eyecatch_note_1280x670.puml" 1280 670
 build_one "${PUML_DIR}/02_architecture_body_1280x720.puml" 1280 720
 build_one "${PUML_DIR}/03_execution_flow_body_1280x720.puml" 1280 720
 build_one "${PUML_DIR}/04_blob_processing_body_1280x720.puml" 1280 720
-
+build_one "${PUML_DIR}/05_blob_1280x720.puml" 1280 720
+build_one "${PUML_DIR}/06_udf_1280x720.puml" 1280 720
 echo
 echo "Done."
 echo "Check sizes:"

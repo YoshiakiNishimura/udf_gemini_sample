@@ -1,0 +1,35 @@
+@startuml
+scale 1280*720
+skinparam backgroundColor #F8FAFC
+skinparam shadowing false
+skinparam roundcorner 20
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 18
+skinparam ArrowColor #64748B
+skinparam ArrowThickness 3
+
+title BLOB処理の流れ：BlobReferenceから画像実体を取得する
+
+rectangle "Java / Iceaxe\nPNGファイルをTgBlobとしてINSERT" as Java #FFFFFF
+database "Tsurugi\nBLOB列に画像を保存" as DB #FFFFFF
+rectangle "SQL\nask_gemini_with_blob(blob1)" as SQL #FFFFFF
+rectangle "Python gRPC Server\nBlobReferenceを受け取る" as Server #FFFFFF
+rectangle "BlobClient\nPNG実体をdownload_blob()" as BlobClient #FFFFFF
+cloud "Gemini API\n画像OCR" as Gemini #FFFFFF
+rectangle "SQL結果\n読み取った文字列" as Result #FFFFFF
+
+Java --> DB : INSERT
+SQL --> Server : gRPC call\nBlobReference
+Server --> BlobClient : create_blob_client(context)
+BlobClient --> DB : BLOB実体を取得
+Server --> Gemini : PNG bytes
+Gemini --> Server : OCR text
+Server --> Result : gemini_string
+
+note right of Server
+gRPCメッセージには
+画像本体ではなく
+BlobReferenceが渡される
+end note
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+scale 1280*720
+skinparam backgroundColor #F8FAFC
+skinparam shadowing false
+skinparam roundcorner 20
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 20
+skinparam ArrowColor #94A3B8
+skinparam ArrowThickness 2
+
+title proto定義で広がるUDFの表現
+
+rectangle "optional\n\n値あり / NULLを表現\n\n例:\noptional string str_value" as Optional #FFFFFF
+rectangle "oneof\n\n複数候補のうち1つ\n\n例:\nstring または int64" as Oneof #FFFFFF
+rectangle "Server streaming RPCs\n\n1回の呼び出しで複数行を返す\n\n例:\nreturns (stream hello_string)" as Stream #FFFFFF
+
+rectangle "SQL UDF入力・戻り値の表現を広げる" as Center #E2E8F0
+
+Optional --> Center
+Oneof --> Center
+Stream --> Center
+
+@enduml
