@@ -1,8 +1,13 @@
 syntax = "proto3";
+import "tsurugidb/udf/tsurugi_types.proto";
 
 message gemini_string {
   string str_value = 1;
 }
+message gemini_string_blob {
+  tsurugidb.udf.BlobReference blob_value = 1;
+}
 service gemini_service {
   rpc ask_gemini(gemini_string) returns (gemini_string);
+  rpc ask_gemini_with_blob(gemini_string_blob) returns (gemini_string);
 }

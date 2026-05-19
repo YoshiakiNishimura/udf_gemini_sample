@@ -1,0 +1,5 @@
+proto/__pycache__/
+tmp
+proto/gemini_pb2.py
+proto/gemini_pb2_grpc.py
+*.png
